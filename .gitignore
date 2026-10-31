@@ -1,0 +1,13 @@
+# 密钥、运行轨迹和本地环境不提交。
+.env
+.env.*
+!.env.example
+.agent-lab/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.DS_Store

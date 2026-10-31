@@ -1,0 +1,21 @@
+name: Python tests
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12', '3.13', '3.14']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      # 标准库即可运行；CI 不读取任何 API key，也不调用真实模型。
+      - run: python -m unittest discover -s tests -v
+      - run: python -m agent_lab demo
